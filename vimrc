@@ -54,8 +54,8 @@ if has("win32")
 	set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
   "let Powerline_symbols = 'fancy'
 	"set guifont=Ubuntu\ Mono:h13
-        "set guifont=Consolas:h13
-	set guifont=DejaVu\ Sans\ Mono\ 13
+	set guifont=Consolas:h13
+	"set guifont=DejaVu\ Sans\ Mono\ 13
 	"set makeprg=make
 elseif has("unix")
 	set backupdir=~/.vim/backup "set back up directory
