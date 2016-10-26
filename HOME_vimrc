@@ -1,0 +1,6 @@
+"Auto load scripts from vimfiles/.vim folder
+if has("win32")
+  source ~/vimfiles/vimrc
+elseif has("unix")
+  source ~/.vim/vimrc
+endif 
