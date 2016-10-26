@@ -54,16 +54,18 @@ if has("win32")
 	set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
   "let Powerline_symbols = 'fancy'
 	"set guifont=Ubuntu\ Mono:h13
-	set guifont=Consolas:h13
+        "set guifont=Consolas:h13
+	set guifont=DejaVu\ Sans\ Mono\ 13
 	"set makeprg=make
 elseif has("unix")
 	set backupdir=~/.vim/backup "set back up directory
 	set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
 	set dict+=~/usr/share/dict/words
 	"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-	let Powerline_symbols = 'fancy'
+	"let Powerline_symbols = 'fancy'
 	"set guifont=Monaco\ 11
-	set guifont=Inconsolata
+	"set guifont=Inconsolata\ 13
+	set guifont=DejaVu\ Sans\ Mono\ 13
 	set makeprg=make
 endif
 set noswapfile "remove swap file
