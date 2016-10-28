@@ -74,6 +74,8 @@ set complete+=k " set autocomplete
 set guitablabel=%{GuiTabLabel()}
 let g:NERDTreeWinPos = "right"
 " Mapping
+map <f2> :ls<CR>
+map <f3> :marks<CR>
 map <f5> :NERDTreeToggle<CR>
 map <f6> :NERDTree<CR>
 imap ;; <Esc>
