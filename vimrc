@@ -23,8 +23,11 @@ set autochdir "set auto change directory
 set fdm=indent " set foding method
 set iskeyword+=_,$,@,%,#    " These character will not divide a word
 set noerrorbells " no error bell
-"set compatible " set compatible with original vi
+set nocompatible " set compatible with original vi
+set term=builtin_xterm
+set term=xterm-256color
 set t_Co=256 "set number of terminal colour
+set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
 syntax on "turn on syntax
 colorscheme molokai  "colorscheme
 set background=dark
@@ -38,10 +41,11 @@ set guioptions-=T "remove toolbox
 set guioptions-=r "remove right scroll
 set guioptions-=L "remove left scroll
 set guioptions-=b "remove toolbox
-"set guioptions-=m  " remove menu
+set guioptions-=m  " remove menu
 set ruler " add ruler
 set virtualedit=all
 set enc=utf-8 "set encoding=utf-8
+set termencoding=utf-8
 set backup "set  back up    
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
@@ -62,27 +66,23 @@ elseif has("unix")
 	set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
 	set dict+=~/usr/share/dict/words
 	"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-	"let Powerline_symbols = 'fancy'
+	let Powerline_symbols = 'fancy'
 	"set guifont=Monaco\ 11
-	"set guifont=Inconsolata\ 13
-	set guifont=DejaVu\ Sans\ Mono\ 13
+	set guifont=Inconsolata\ for\ Powerline\ 13
+	"set guifont=DejaVu\ Sans\ Mono\ 13
 	set makeprg=make
+	python from powerline.vim import setup as powerline_setup
+	python powerline_setup()
+	python del powerline_setup
+
 endif
 set noswapfile "remove swap file
 set complete+=k " set autocomplete
 set guitablabel=%{GuiTabLabel()}
 let g:NERDTreeWinPos = "right"
 " Mapping
-map <f2> :silent ! ctags -R .<CR>
-map <f3> :TagbarCurrentTag<CR>
-map <f4> :TagbarToggle<CR>
 map <f5> :NERDTreeToggle<CR>
 map <f6> :NERDTree<CR>
-map <f7> :cprev<CR>
-map <f8> :cnext<CR>
-map <f9> :make<CR>
-map <f10> :make compile_all<CR>
-map <f11> :clist<CR>
 imap ;; <Esc>
 " navigate without lifting hand off of keys
 imap <C-h> <Left>
@@ -101,9 +101,9 @@ au Filetype tcl call Func_tcl()
 au Filetype vhdl call Func_vhdl()
 au Filetype systemverilog call Func_systemverilog()
 au Filetype verilog call Func_systemverilog()
-au Filetype perl call Func_perl()
+au Filetype python call Func_python()
 au Filetype tex call Func_Latex()
-au FileType vhdl,verilog,perl au BufWritePre <buffer> :%s/\s\+$//e
+au FileType vhdl,verilog,python au BufWritePre <buffer> :%s/\s\+$//e
 au BufRead,BufNewFile *.logs,*.log set filetype=changelog
 au BufRead,BufNewFile *.do,*.vsim set filetype=tcl
 au BufRead,BufNewFile *.vh set filetype=verilog
@@ -193,9 +193,13 @@ function Func_systemverilog()
 	:call Func_set_spec_tab()
 	let g:tlist_systemverilog_settings  =  'systemverilog;c:class;t:task;f:function;m:module;p:program;I:interface;e:typedef;i:input;o:output;P:parameter'
 endfunction
-" Configure perl file
-function Func_perl()
-	map <F12> <Esc>:silent ! perl %<CR><CR>
+" Configure python file
+function Func_python()
+	":call Func_set_spec_tab()
+	set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
+	set shiftwidth=2     " shift with 2 spaces (press tab)
+	set tabstop=2        " set tab width
+	set list             " display list of character
 endfunction
 " Configure latex file
 function Func_Latex()
@@ -214,6 +218,14 @@ let g:LatexBox_viewer='SumatraPDF -reuse-instance -inverse-search '
 "let g:LatexBox_latexmk_preview_continuously = 1
 endfunction
 
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+noremap <Up>     <NOP>
+noremap <Down>   <NOP>
+noremap <Left>   <NOP>
+noremap <Right>  <NOP>
 
 " I dont know that is this
 function! Preserve(command)
