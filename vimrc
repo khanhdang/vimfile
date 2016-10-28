@@ -7,7 +7,7 @@ scriptencoding utf-8   " set encoding method
 set mousehide    " hide mouse when typing
 set cursorline   " highlight current line
 set laststatus=2 " display statusline
-set statusline=%t%m[%l/%L]%y[%{&ff}][%c,%l][fullpath=%F] " Format of statusline
+"set statusline=%t%m[%l/%L]%y[%{&ff}][%c,%l][fullpath=%F] " Format of statusline
 " now set it up to change the status line based on mode
 set cmdheight=1 "command bar is 2 high
 set backspace=indent,eol,start "set backspace function
@@ -24,10 +24,7 @@ set fdm=indent " set foding method
 set iskeyword+=_,$,@,%,#    " These character will not divide a word
 set noerrorbells " no error bell
 set nocompatible " set compatible with original vi
-set term=builtin_xterm
-set term=xterm-256color
 set t_Co=256 "set number of terminal colour
-set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
 syntax on "turn on syntax
 colorscheme molokai  "colorscheme
 set background=dark
@@ -56,25 +53,21 @@ vnoremap <F1> <ESC>
 if has("win32")
 	set backupdir=~/vimfiles/backup "set back up directory
 	set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
-  "let Powerline_symbols = 'fancy'
-	"set guifont=Ubuntu\ Mono:h13
-	set guifont=Consolas:h13
-	"set guifont=DejaVu\ Sans\ Mono\ 13
-	"set makeprg=make
+ 	let g:airline_powerline_fonts = 1
+	set guifont=Inconsolata\ for\ Powerline:h13
 elseif has("unix")
+	set term=builtin_xterm
+	set term=xterm-256color
+	set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
 	set backupdir=~/.vim/backup "set back up directory
 	set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
 	set dict+=~/usr/share/dict/words
-	"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 	let Powerline_symbols = 'fancy'
-	"set guifont=Monaco\ 11
 	set guifont=Inconsolata\ for\ Powerline\ 13
-	"set guifont=DejaVu\ Sans\ Mono\ 13
 	set makeprg=make
 	python from powerline.vim import setup as powerline_setup
 	python powerline_setup()
 	python del powerline_setup
-
 endif
 set noswapfile "remove swap file
 set complete+=k " set autocomplete
