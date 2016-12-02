@@ -58,16 +58,17 @@ if has("win32")
 elseif has("unix")
 	set term=builtin_xterm
 	set term=xterm-256color
-	set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
+	" set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
 	set backupdir=~/.vim/backup "set back up directory
 	set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
 	set dict+=~/usr/share/dict/words
-	let Powerline_symbols = 'fancy'
+	" let Powerline_symbols = 'fancy'
+	let g:airline_powerline_fonts = 1
 	set guifont=Inconsolata\ for\ Powerline\ 13
 	set makeprg=make
-	python from powerline.vim import setup as powerline_setup
-	python powerline_setup()
-	python del powerline_setup
+	" python from powerline.vim import setup as powerline_setup
+	" python powerline_setup()
+	" python del powerline_setup
 endif
 set noswapfile "remove swap file
 set complete+=k " set autocomplete
