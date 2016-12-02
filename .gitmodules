@@ -28,3 +28,6 @@
 [submodule "bundle/vim-langtool"]
 	path = bundle/vim-langtool
 	url = git://github.com/dpelle/vim-LanguageTool.git
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = git://github.com/vim-airline/vim-airline.git
