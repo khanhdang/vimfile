@@ -51,24 +51,24 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 " Setup backup folder, font and dictionary
 if has("win32")
-	set backupdir=~/vimfiles/backup "set back up directory
-	set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
- 	let g:airline_powerline_fonts = 1
-	set guifont=Inconsolata\ for\ Powerline:h13
+  set backupdir=~/vimfiles/backup "set back up directory
+  set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
+  let g:airline_powerline_fonts = 1
+  set guifont=Inconsolata\ for\ Powerline:h13
 elseif has("unix")
-	set term=builtin_xterm
-	set term=xterm-256color
-	" set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
-	set backupdir=~/.vim/backup "set back up directory
-	set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
-	set dict+=~/usr/share/dict/words
-	" let Powerline_symbols = 'fancy'
-	let g:airline_powerline_fonts = 1
-	set guifont=Inconsolata\ for\ Powerline\ 13
-	set makeprg=make
-	" python from powerline.vim import setup as powerline_setup
-	" python powerline_setup()
-	" python del powerline_setup
+  set term=builtin_xterm
+  set term=xterm-256color
+  " set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
+  set backupdir=~/.vim/backup "set back up directory
+  set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
+  set dict+=~/usr/share/dict/words
+  " let Powerline_symbols = 'fancy'
+  let g:airline_powerline_fonts = 1
+  set guifont=Inconsolata\ for\ Powerline\ 13
+  set makeprg=make
+  " python from powerline.vim import setup as powerline_setup
+  " python powerline_setup()
+  " python del powerline_setup
 endif
 set noswapfile "remove swap file
 set complete+=k " set autocomplete
@@ -107,111 +107,116 @@ au BufRead,BufNewFile *.gp set filetype=gnuplot
 
 " Use autocomplete function
 if has("autocmd") && exists("+omnifunc")
-	autocmd Filetype *
-				\ if &omnifunc == "" |
-				\ setlocal omnifunc=syntaxcomplete#Complete |
-				\ endif
+  autocmd Filetype *
+        \ if &omnifunc == "" |
+        \ setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
 endif 
 " Return previous line after re-open"
 augroup line_return
-	au!
-	au BufReadPost *
-				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\ execute 'normal! g`"zvzz' |
-				\ endif
+  au!
+  au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ execute 'normal! g`"zvzz' |
+        \ endif
 augroup END
 " Here is function :
 " Set GUI TAB label
 function! GuiTabLabel()
-	" add the tab number
-	let label = '['.tabpagenr()
-	" modified since the last save?
-	let buflist = tabpagebuflist(v:lnum)
-	for bufnr in buflist
-		if getbufvar(bufnr, '&modified')
-			let label .= '*'
-			break
-		endif
-	endfor
-	" count number of open windows in the tab
-	let wincount = tabpagewinnr(v:lnum, '$')
-	if wincount > 1
-		let label .= ', '.wincount
-	endif
-	let label .= '] '
-	" add the file name without path information
-	let n = bufname(buflist[tabpagewinnr(v:lnum) - 1])
-	let label .= fnamemodify(n, ':t')
-	return label
+  " add the tab number
+  let label = '['.tabpagenr()
+  " modified since the last save?
+  let buflist = tabpagebuflist(v:lnum)
+  for bufnr in buflist
+    if getbufvar(bufnr, '&modified')
+      let label .= '*'
+      break
+    endif
+  endfor
+  " count number of open windows in the tab
+  let wincount = tabpagewinnr(v:lnum, '$')
+  if wincount > 1
+    let label .= ', '.wincount
+  endif
+  let label .= '] '
+  " add the file name without path information
+  let n = bufname(buflist[tabpagewinnr(v:lnum) - 1])
+  let label .= fnamemodify(n, ':t')
+  return label
 endfunction
 " Set function of TCL file
 function! Func_tcl()
-	:call Func_set_spec_tab()
-	"vmap <C-c>c :s/^/#/<CR>:noh<CR>
-	"vmap <C-c>u :s/^#/<CR>:noh<CR>
+  :call Func_set_spec_tab()
+  "vmap <C-c>c :s/^/#/<CR>:noh<CR>
+  "vmap <C-c>u :s/^#/<CR>:noh<CR>
 
 endfunction
 " Set function of tab
 function Func_set_spec_tab()
-	" Convert tab -> spaces
-	set expandtab        " expand tab to 2 spaces
-	set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
-	set list             " display list of character
-	set shiftwidth=2     " shift with 2 spaces (press tab)
-	set tabstop=2        " set tab width
+  " Convert tab -> spaces
+  set expandtab        " expand tab to 2 spaces
+  set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
+  set list             " display list of character
+  set shiftwidth=2     " shift with 2 spaces (press tab)
+  set tabstop=2        " set tab width
 endfunction
 " Configure VHDL file
 function! Func_vhdl()
-	:call Func_set_spec_tab()
-	" Set dictionary
-	if has("unix")
-		set dict+=~/.vim/dictionary/vhdl.dic
-	elseif has("win32")
-		set dict+=~/vimfiles/dictionary/vhdl.dic
-	endif
-	"manual ctags
-	let g:tlist_vhdl_settings   = 'vhdl;d:package declarations;b:package bodies;e:entities;Z:port map;a:architecture specifications;t:type declarations;p:processes;f:functions;r:procedures'
-	"vmap <C-c>c :s/^/--/<CR>:noh<CR>
-	"vmap <C-c>u :s/^--/<CR>:noh<CR>
-	" Self-define error
-	:syntax region Fixed  start= '-- Fixed' end='$'
-	:syntax region Note start='-- Note' end='$'  
-	:syntax region Warning start='-- Warning' end='$'  
-	:syntax region Error start='-- Error' end='$'
-	:syntax region Todo start='-- Todo' end='$'
-	":syntax region Note start ='-- //' end="$"
-	" Set errorformat
-	set errorformat=**\ Error:\ %f(%l):\ %m
-	set errorformat+=**\ Warning:\ %f(%l):\ %m
+  :call Func_set_spec_tab()
+  " Set dictionary
+  if has("unix")
+    set dict+=~/.vim/dictionary/vhdl.dic
+  elseif has("win32")
+    set dict+=~/vimfiles/dictionary/vhdl.dic
+  endif
+  "manual ctags
+  let g:tlist_vhdl_settings   = 'vhdl;d:package declarations;b:package bodies;e:entities;Z:port map;a:architecture specifications;t:type declarations;p:processes;f:functions;r:procedures'
+  "vmap <C-c>c :s/^/--/<CR>:noh<CR>
+  "vmap <C-c>u :s/^--/<CR>:noh<CR>
+  " Self-define error
+  :syntax region Fixed  start= '-- Fixed' end='$'
+  :syntax region Note start='-- Note' end='$'  
+  :syntax region Warning start='-- Warning' end='$'  
+  :syntax region Error start='-- Error' end='$'
+  :syntax region Todo start='-- Todo' end='$'
+  ":syntax region Note start ='-- //' end="$"
+  " Set errorformat
+  set errorformat=**\ Error:\ %f(%l):\ %m
+  set errorformat+=**\ Warning:\ %f(%l):\ %m
 endfunction
 " Configure systemverilog file
 function Func_systemverilog()
-	:call Func_set_spec_tab()
-	let g:tlist_systemverilog_settings  =  'systemverilog;c:class;t:task;f:function;m:module;p:program;I:interface;e:typedef;i:input;o:output;P:parameter'
+  :call Func_set_spec_tab()
+  let g:tlist_systemverilog_settings  =  'systemverilog;c:class;t:task;f:function;m:module;p:program;I:interface;e:typedef;i:input;o:output;P:parameter'
 endfunction
 " Configure python file
 function Func_python()
-	":call Func_set_spec_tab()
-	set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
-	set shiftwidth=2     " shift with 2 spaces (press tab)
-	set tabstop=2        " set tab width
-	set list             " display list of character
+  ":call Func_set_spec_tab()
+  set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
+  set shiftwidth=2     " shift with 2 spaces (press tab)
+  set tabstop=2        " set tab width
+  set list             " display list of character
 endfunction
 " Configure latex file
 function Func_Latex()
-	:set cc=90 " the ruler of width
-	:call Func_set_spec_tab()
-	":AutoComplPopDisable 
-let g:LatexBox_split_type="new"
-let g:LatexBox_latexmk_options =
-  \ '-pdflatex="pdflatex -synctex=1 %O %S"'
-let g:LatexBox_viewer='SumatraPDF -reuse-instance -inverse-search '
-	  \ . '"gvim --servername ' . v:servername
-	  \ . ' --remote-send \"^<C-\^>^<C-n^>'
-	  \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
-	  \ . ':call remote_foreground('''.v:servername.''')^<CR^>\""'
+  :set cc=90 " the ruler of width
+  :call Func_set_spec_tab()
+  ":AutoComplPopDisable 
+  let g:LatexBox_split_type="new"
+  let g:LatexBox_quickfix=3
+  let g:LatexBox_latexmk_options =
+        \ '-pdflatex="pdflatex -synctex=1 %O %S"'
+  if has("unix")
+    let g:LatexBox_viewer='evince'
+  elseif has("win32")
+    let g:LatexBox_viewer='SumatraPDF -reuse-instance -inverse-search '
+          \ . '"gvim --servername ' . v:servername
+          \ . ' --remote-send \"^<C-\^>^<C-n^>'
+          \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
+          \ . ':call remote_foreground('''.v:servername.''')^<CR^>\""' 
+  endif 
 
-"let g:LatexBox_latexmk_preview_continuously = 1
+  "let g:LatexBox_latexmk_preview_continuously = 1
 endfunction
 
 inoremap <Up>    <NOP>
@@ -223,17 +228,17 @@ noremap <Down>   <NOP>
 noremap <Left>   <NOP>
 noremap <Right>  <NOP>
 
-" I dont know that is this
+" Auto ident
 function! Preserve(command)
-	" Preparation: save last search, and cursor position.
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	" Do the business:
-	execute a:command
-	" Clean up: restore previous search history, and cursor position
-	let @/=_s
-	call cursor(l, c)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 map ;g :call Preserve("normal! gg=G")<CR>
