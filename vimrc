@@ -33,7 +33,7 @@ set noerrorbells " no error bell
 set nocompatible " set compatible with original vi
 set t_Co=256 "set number of terminal colour
 syntax on "turn on syntax
-colorscheme gruvbox "molokai  
+colorscheme molokai "gruvbox   
 set background=dark
 filetype plugin on " enable plugin with filetype
 set smarttab
@@ -53,7 +53,7 @@ set backup "set  back up
 if has("patch-7.4.710")
 	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:_ " display tab as >>>>
 else
-	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<, " display tab as >>>>
+	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:< " display tab as >>>>
 endif
 
 nmap <leader>l :set list!<CR>
