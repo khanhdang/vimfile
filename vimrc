@@ -33,7 +33,7 @@ set noerrorbells " no error bell
 set nocompatible " set compatible with original vi
 set t_Co=256 "set number of terminal colour
 syntax on "turn on syntax
-colorscheme molokai  "colorscheme
+colorscheme gruvbox "molokai  
 set background=dark
 filetype plugin on " enable plugin with filetype
 set smarttab
