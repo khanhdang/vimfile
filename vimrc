@@ -34,7 +34,7 @@ set nocompatible " set compatible with original vi
 set t_Co=256 "set number of terminal colour
 syntax on "turn on syntax
 set background=dark
-colorscheme solarized "gruvbox   
+colorscheme  gruvbox  " molokai
 filetype plugin on " enable plugin with filetype
 set smarttab
 set smartindent
@@ -70,15 +70,17 @@ if has("win32")
   let g:airline_powerline_fonts = 1
   set guifont=Fira\ Mono\ for\ Powerline:h13
 elseif has("unix")
-  set term=builtin_xterm
-  set term=xterm-256color
-  let g:solarized_termcolors=256
+  "set term=builtin_xterm
+  set term=screen-256color
+  "let g:solarized_termcolors=256
   " set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
   set backupdir=~/.vim/backup "set back up directory
   set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
   set dict+=~/usr/share/dict/words
   " let Powerline_symbols = 'fancy'
   let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enable = 1
+  let g:airline#extensions#tabline#fnamemode = ':t'
   set guifont=Fira\ Mono\ for\ Powerline\ 13
   set makeprg=make
   " python from powerline.vim import setup as powerline_setup
