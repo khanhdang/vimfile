@@ -58,6 +58,9 @@ endif
 
 nmap <leader>l :set list!<CR>
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemode = ':t'
+
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
@@ -79,8 +82,6 @@ elseif has("unix")
   set dict+=~/usr/share/dict/words
   " let Powerline_symbols = 'fancy'
   let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tabline#enable = 1
-  let g:airline#extensions#tabline#fnamemode = ':t'
   set guifont=Fira\ Mono\ for\ Powerline\ 13
   set makeprg=make
   " python from powerline.vim import setup as powerline_setup
