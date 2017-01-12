@@ -58,8 +58,15 @@ endif
 
 nmap <leader>l :set list!<CR>
 
+" This replace buffer for tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemode = ':t'
+set hidden
+nmap <leader>T :enew<cr> "new?
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR> 
+nmap <leader>bq :bp <BAR> bd #<CR>  "close buffer
+nmap <leader>bl :ls<CR>  "show status
 
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
