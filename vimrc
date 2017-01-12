@@ -33,8 +33,8 @@ set noerrorbells " no error bell
 set nocompatible " set compatible with original vi
 set t_Co=256 "set number of terminal colour
 syntax on "turn on syntax
-colorscheme molokai "gruvbox   
 set background=dark
+colorscheme solarized "gruvbox   
 filetype plugin on " enable plugin with filetype
 set smarttab
 set smartindent
@@ -72,6 +72,7 @@ if has("win32")
 elseif has("unix")
   set term=builtin_xterm
   set term=xterm-256color
+  let g:solarized_termcolors=256
   " set rtp+=/usr/lib/python2.6/site-packages/powerline/bindings/vim/
   set backupdir=~/.vim/backup "set back up directory
   set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
