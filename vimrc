@@ -44,6 +44,8 @@ set virtualedit=all
 set enc=utf-8 "set encoding=utf-8
 set termencoding=utf-8
 set backup "set  back up    
+set listchars=tab:»·,trail:·,extends:#,nbsp:·, " display tab as >>>>
+
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
@@ -87,6 +89,7 @@ imap <C-k> <Up>
 imap <C-l> <Right>
 "Changing Leader Key
 let mapleader = ","
+nmap <leader>l :set list!<CR>
 " Tab modification
 map <C-t> :tabnew<CR>
 map <C-TAB> :tabNext<CR>
@@ -155,7 +158,6 @@ endfunction
 function Func_set_spec_tab()
   " Convert tab -> spaces
   set expandtab        " expand tab to 2 spaces
-  set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
   set list             " display list of character
   set shiftwidth=2     " shift with 2 spaces (press tab)
   set tabstop=2        " set tab width
