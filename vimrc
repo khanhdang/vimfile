@@ -56,23 +56,21 @@ else
 	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:< " display tab as >>>>
 endif
 
-nmap <leader>l :set list!<CR>
+set list
 
 " This replace buffer for tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemode = ':t'
-set hidden
-nmap <leader>T :enew<cr> "new?
+
+nmap <leader>T :enew<cr> 
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR> 
-nmap <leader>bq :bp <BAR> bd #<CR>  "close buffer
-nmap <leader>bl :ls<CR>  "show status
 
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+"inoremap <F1> <ESC>
+"nnoremap <F1> <ESC>
+"vnoremap <F1> <ESC>
 " Setup backup folder, font and dictionary
 if has("win32")
   set backupdir=~/vimfiles/backup "set back up directory
@@ -111,8 +109,8 @@ imap <C-j> <Down>
 imap <C-k> <Up>
 imap <C-l> <Right>
 " Tab modification
-map <C-t> :tabnew<CR>
-map <C-TAB> :tabNext<CR>
+"map <C-t> :tabnew<CR>
+"map <C-TAB> :tabNext<CR>
 
 let do_syntax_sel_menu = 1|runtime! synmenu.vim
 " Call function depend on filetype :
