@@ -4,11 +4,18 @@
 execute pathogen#infect() 
 
 scriptencoding utf-8   " set encoding method
+set enc=utf-8 "set encoding=utf-8
+set termencoding=utf-8
+
 set mousehide    " hide mouse when typing
 set cursorline   " highlight current line
 set laststatus=2 " display statusline
 "set statusline=%t%m[%l/%L]%y[%{&ff}][%c,%l][fullpath=%F] " Format of statusline
 " now set it up to change the status line based on mode
+"
+"Changing Leader Key
+let mapleader = ","
+
 set cmdheight=1 "command bar is 2 high
 set backspace=indent,eol,start "set backspace function
 set hlsearch "highlight searched things
@@ -41,10 +48,15 @@ set guioptions-=b "remove toolbox
 set guioptions-=m  " remove menu
 set ruler " add ruler
 set virtualedit=all
-set enc=utf-8 "set encoding=utf-8
-set termencoding=utf-8
 set backup "set  back up    
-set listchars=nbsp:·,eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣ " display tab as >>>>
+
+if has("patch-7.4.710")
+	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:_ " display tab as >>>>
+else
+	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<, " display tab as >>>>
+endif
+
+nmap <leader>l :set list!<CR>
 
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
@@ -56,7 +68,7 @@ if has("win32")
   set backupdir=~/vimfiles/backup "set back up directory
   set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
   let g:airline_powerline_fonts = 1
-  set guifont=Inconsolata\ for\ Powerline:h13
+  set guifont=Fira\ Mono\ for\ Powerline:h13
 elseif has("unix")
   set term=builtin_xterm
   set term=xterm-256color
@@ -66,7 +78,7 @@ elseif has("unix")
   set dict+=~/usr/share/dict/words
   " let Powerline_symbols = 'fancy'
   let g:airline_powerline_fonts = 1
-  set guifont=Inconsolata\ for\ Powerline\ 13
+  set guifont=Fira\ Mono\ for\ Powerline\ 13
   set makeprg=make
   " python from powerline.vim import setup as powerline_setup
   " python powerline_setup()
@@ -87,9 +99,6 @@ imap <C-h> <Left>
 imap <C-j> <Down>
 imap <C-k> <Up>
 imap <C-l> <Right>
-"Changing Leader Key
-let mapleader = ","
-nmap <leader>l :set list!<CR>
 " Tab modification
 map <C-t> :tabnew<CR>
 map <C-TAB> :tabNext<CR>
