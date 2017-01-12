@@ -44,7 +44,7 @@ set virtualedit=all
 set enc=utf-8 "set encoding=utf-8
 set termencoding=utf-8
 set backup "set  back up    
-set listchars=tab:»·,trail:·,extends:#,nbsp:·,space:␣ " display tab as >>>>
+set listchars=nbsp:·,eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣ " display tab as >>>>
 
 au FocusLost * :wa "save when out of forcus
 " Get Rid of stupid Goddamned help keys
