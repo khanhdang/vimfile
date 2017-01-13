@@ -76,7 +76,12 @@ if has("win32")
   set backupdir=~/vimfiles/backup "set back up directory
   set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
   let g:airline_powerline_fonts = 1
-  set guifont=Fira\ Mono\ for\ Powerline:h13
+  set guifont=Fira\ Mono\ Medium\ for\ Powerline:h11
+  map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+  if (v:version == 704 && has("patch393")) || v:version > 704
+            set renderoptions=type:directx,level:0.75,gamma:1.25,contrast:0.25,
+                        \geom:1,renmode:5,taamode:1
+  endif
 elseif has("unix")
   "set term=builtin_xterm
   set term=screen-256color
