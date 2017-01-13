@@ -61,7 +61,7 @@ set list
 " This replace buffer for tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemode = ':t'
-
+set hidden
 nmap <leader>T :enew<cr> 
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR> 
@@ -87,7 +87,7 @@ elseif has("unix")
   set dict+=~/usr/share/dict/words
   " let Powerline_symbols = 'fancy'
   let g:airline_powerline_fonts = 1
-  set guifont=Fira\ Mono\ for\ Powerline\ 13
+  set guifont=Fira\ Mono\ Medium\ for\ Powerline\ 13
   set makeprg=make
   " python from powerline.vim import setup as powerline_setup
   " python powerline_setup()
