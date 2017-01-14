@@ -34,7 +34,7 @@ set nocompatible " set compatible with original vi
 set t_Co=256 "set number of terminal colour
 syntax on "turn on syntax
 set background=dark
-colorscheme  gruvbox  " molokai
+colorscheme  molokai
 filetype plugin on " enable plugin with filetype
 set smarttab
 set smartindent
@@ -51,7 +51,7 @@ set virtualedit=all
 set backup "set  back up    
 
 if has("patch-7.4.710")
-	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:_ " display tab as >>>>
+	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣ " display tab as >>>>
 else
 	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:< " display tab as >>>>
 endif
