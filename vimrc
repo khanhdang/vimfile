@@ -49,12 +49,7 @@ set guioptions-=m  " remove menu
 set ruler " add ruler
 set virtualedit=all
 set backup "set  back up    
-
-if has("patch-7.4.710")
-	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣ " display tab as >>>>
-else
-	set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:< " display tab as >>>>
-endif
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:< " display tab as >>>>
 
 set list
 
@@ -217,7 +212,7 @@ endfunction
 " Configure python file
 function Func_python()
   ":call Func_set_spec_tab()
-  set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
+  "set listchars=tab:»·,trail:·,extends:#,nbsp:· " display tab as >>>>
   set shiftwidth=2     " shift with 2 spaces (press tab)
   set tabstop=2        " set tab width
   set list             " display list of character
