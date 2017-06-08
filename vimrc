@@ -21,7 +21,7 @@ set backspace=indent,eol,start "set backspace function
 set hlsearch "highlight searched things
 set incsearch "incremental search
 set ignorecase "ignore case
-set textwidth=0 " ???
+set textwidth=0 " no wrap no break
 set autoread "auto read when file is changed from outside
 set ruler "show current position
 set nu "show line number
@@ -71,7 +71,7 @@ if has("win32")
   set backupdir=~/vimfiles/backup "set back up directory
   set dict+=~/vimfiles/dictionary/common.dic  "add common dictionary   
   let g:airline_powerline_fonts = 1
-  set guifont=Fira\ Mono\ Medium\ for\ Powerline:h11
+  set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h11
   map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
   if (v:version == 704 && has("patch393")) || v:version > 704
             set renderoptions=type:directx,level:0.75,gamma:1.25,contrast:0.25,
@@ -85,9 +85,9 @@ elseif has("unix")
   set backupdir=~/.vim/backup "set back up directory
   set dict+=~/.vim/dictionary/common.dic  "add common dictionary   
   set dict+=~/usr/share/dict/words
-  " let Powerline_symbols = 'fancy'
+  "let Powerline_symbols = 'fancy'
   let g:airline_powerline_fonts = 1
-  set guifont=Fira\ Mono\ Medium\ for\ Powerline\ 13
+  set guifont=Roboto\ Mono\ Medium\ for\ Powerline\ 11
   set makeprg=make
   " python from powerline.vim import setup as powerline_setup
   " python powerline_setup()
@@ -219,7 +219,7 @@ function Func_python()
 endfunction
 " Configure latex file
 function Func_Latex()
-  :set cc=90 " the ruler of width
+  :set nolist
   :call Func_set_spec_tab()
   ":AutoComplPopDisable 
   let g:LatexBox_split_type="new"
